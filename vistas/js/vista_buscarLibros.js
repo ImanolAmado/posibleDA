@@ -40,7 +40,7 @@ window.onload = function () {
 
         // largo del array de objetos json
         let largo = libros.length;
-        let imagen = "../img/imagenNoDisponible.jpg";               
+        let imagen = "../resources/img/imagenNoDisponible.jpg";               
         
         var listaLibros = []; // lista para objetos libro              
 
@@ -68,12 +68,23 @@ window.onload = function () {
                 if(Object.hasOwn(libros[i].volumeInfo.imageLinks, 'thumbnail') == true){
                 miLibro.imagen = libros[i].volumeInfo.imageLinks.thumbnail;
                 } else miLibro.imagen = libros[i].volumeInfo.imageLinks.smallThumbnail;
-           } else miLibro.imagen = "../img/imagenNoDisponible.jpg";
+           } else miLibro.imagen = "../resources/img/imagenNoDisponible.jpg";
 
-            miLibro.descripcion = libros[i].volumeInfo.description;         
+            if(Object.hasOwn(libros[i].volumeInfo, 'description') == true){
+            miLibro.descripcion = libros[i].volumeInfo.description; 
+            } else miLibro.descripcion = "Información no disponible";      
+            
+            if(Object.hasOwn(libros[i].volumeInfo, 'infoLink') == true){
             miLibro.masInfo = libros[i].volumeInfo.infoLink;
+            } else miLibro.masInfo = "Información no disponible";    
+
+            if(Object.hasOwn(libros[i].volumeInfo, 'publishedDate') == true){
             miLibro.fecha = libros[i].volumeInfo.publishedDate;
-            miLibro.editorial = libros[i].volumeInfo.publisher;
+            } else miLibro.fecha = "Desconocido";
+               
+            if(Object.hasOwn(libros[i].volumeInfo, 'publisher') == true){
+            miLibro.editorial = libros[i].volumeInfo.publisher;  
+            } else miLibro.editorial = "Desconocido";
 
             // div1
             let div1 = document.createElement("div");
@@ -142,7 +153,7 @@ window.onload = function () {
             h63.setAttribute("class", "card-text");
             h63.setAttribute("style", "font-weight:400");
             
-            h63.innerHTML='Más información: <a href="${masInfo" target="_blank">aquí</a>';                      
+            h63.innerHTML='Más información: <a href="' + miLibro.masInfo + '" target="_blank">aquí</a>';                      
             div5.appendChild(h63);
 
             let a = document.createElement("input");
@@ -166,8 +177,7 @@ window.onload = function () {
         // que nos interese por su índice
         let id = event.target.id.split("_");        
         let libroJSON = JSON.stringify(listaLibros[id[1]]);
-
-        //console.log(libroJSON);
+       
         
         // Llamada AJAX, enviando nuestro Objeto transformado
         // en JSON.        
@@ -179,26 +189,54 @@ window.onload = function () {
         
         body: libroJSON
         })
-                
 
+    
+    // si no hay error, recibimos valor como objeto "data"
+    .then(response => response.json())
+    .then(data => {
+          
+        if (data.error) {
+        console.error('Error:', data.error);
+        ventanaError();
+    } else {  
+        console.log(data);     
+        ventanaSuccess(data);
+        }   
+    })  
+
+    }
+
+        // Ventana emergente con mensaje de éxito
+        function ventanaSuccess(data){
+
+            // Cojo el valor del ancho y de la altura de la pantalla
+            let ancho = window.innerWidth;
+            let alto = window.innerHeight;      
+
+            // Cálculo de la posición centrada 
+            ancho = (ancho / 2) - 150;
+            alto = (alto / 2) - 150;               
+                  
+            // Creo una nueva ventana, 400px de alto y de 200px ancho
+            let nuevaVentana=window.open("../vistas/ventanasEmergentes/vistaVentanaConfirmacion.html", "Pag",
+            "left="+ancho+" top="+alto+"toolbar=yes,location=yes,menubar=yes,resizable=no,width=400,height=200" );
+        }
+
+       // Ventana emergente con mensaje de error
+       function ventanaError(){
 
         // Cojo el valor del ancho y de la altura de la pantalla
         let ancho = window.innerWidth;
-        let alto = window.innerHeight;        
+        let alto = window.innerHeight;      
 
-        // Calculo la posición centrada para la ventana emergente
+        // Cálculo de la posición centrada 
         ancho = (ancho / 2) - 150;
         alto = (alto / 2) - 150;               
-                  
+              
         // Creo una nueva ventana, 400px de alto y de 200px ancho
-       let nuevaVentana=window.open("../vistas/vistaVentanaConfirmacion.html", "Pag",
+        let nuevaVentana=window.open("../vistas/ventanasEmergentes/vistaVentanaError.html", "Pag",
         "left="+ancho+" top="+alto+"toolbar=yes,location=yes,menubar=yes,resizable=no,width=400,height=200" );
-
-       
-
-
-
-        }
+    }
         
     }
 

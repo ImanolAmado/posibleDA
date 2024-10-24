@@ -20,9 +20,17 @@
     </div>
     <div class="row w-100 text-center mt-3" id="botones">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">   
-            <button type="button" class="btn btn-primary">Volver</button>
+            <button type="button" id="boton" class="btn btn-primary">Cerrar</button>
         </div>
     </div> 
+
+    <!-- Script para cerrar ventana pulsando el botón-->
+    <script>
+        let boton = document.getElementById("boton");
+        boton.addEventListener("click", function(){
+        window.close();
+        })
+    </script>
 
 </div> <!--Cierre container -->
 
