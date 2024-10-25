@@ -15,14 +15,23 @@
     <!-- fila búsqueda -->
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">           
-            <h5 class="row justify-content-center align-self-center">¡El libro se ha añadido correctamente!</h5>            
+            <h5 class="row justify-content-center align-self-center" id="mensaje"></h5>            
         </div>       
     </div>
     <div class="row w-100 text-center mt-3" id="botones">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">   
-            <button type="button" class="btn btn-primary">Volver</button>
+            <button type="button" id="boton" class="btn btn-primary">Cerrar</button>
         </div>
     </div> 
+
+    <!-- Script para cerrar ventana pulsando el botón-->
+    <script>
+        let boton = document.getElementById("boton");
+        boton.addEventListener("click", function(){
+        window.close();
+        });       
+
+    </script>
 
 </div> <!--Cierre container -->
 
