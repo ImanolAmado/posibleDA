@@ -38,16 +38,21 @@ if(isset($_SESSION['email'])){
                 <form class="px-4 py-3" method="post" action="../controllers/validarLogin.php">
                     <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com" required>
                     </div>
                     <div class="mb-3">
                     <label for="pass" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">              
+                    <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required>              
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
             </div>
         </div> 
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 id="mensajeError"></h3>
+            </div>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

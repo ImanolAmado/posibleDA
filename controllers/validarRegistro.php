@@ -5,9 +5,10 @@ include_once "../modelos/Usuario.php";
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){    
     
+    $mensajeError="";
     if(empty ($_POST['email']) || empty ($_POST['pass']) || empty ($_POST['nombre']) || empty ($_POST['apellido']) || empty ($_POST['rol'])){
 
-        echo "¡Error! Ningún campo del login puede estra vacío";   
+        $mensajeError = "¡Error! Ningún campo del login puede estar vacío";   
               
     } else {
 
@@ -38,19 +39,15 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                     $_SESSION['id_usuario']=$idEncontrado;
                     $_SESSION['rol']=$rolEncontrado;
                     $_SESSION['apellido']=$apellidoEncontrado;
-                    error_log("Login correcto. Redirigiendo a paginaUsuario.php");
 
-                    if (headers_sent()) {
-                        die("Encabezados ya enviados.");
-                    }
                     header("Location: ../vistas/paginaUsuario.php");    
                     exit();     
            
-                } else echo "Lo siento password no coincide";  
+                } else $mensajeError = "Lo siento password no coincide";  
 
-            } else echo "No existe ese email en la base de datos";
+            } else $mensajeError = "No existe ese email en la base de datos";
         
-        } else echo "Formato de email incorrecto";
+        } else $mensajeError = "Formato de email incorrecto";
     }
 }
 function emailValido($email){
