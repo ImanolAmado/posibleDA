@@ -1,10 +1,9 @@
 <?php
-/* session_start();
+session_start();
 if(isset($_SESSION['email'])){
-   header("Location:welcome.php");
-   exit();
-} */
-
+    header("Location: paginaUsuario.php");
+    exit();
+ }
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +23,6 @@ if(isset($_SESSION['email'])){
 <body>  
 
 <!-- Login -->
-<form method="post" action="login1.php">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -37,7 +35,7 @@ if(isset($_SESSION['email'])){
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
-                <form class="px-4 py-3" method="post" action="login.php">
+                <form class="px-4 py-3" method="post" action="../controllers/validarLogin.php">
                     <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="email@example.com">
@@ -46,15 +44,11 @@ if(isset($_SESSION['email'])){
                     <label for="pass" class="form-label">Password</label>
                     <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">              
                     </div>
-                    <button type="submit" class="btn btn-primary">Sign in</butto>
+                    <button type="submit" class="btn btn-primary">Login</button>
                 </form>
             </div>
         </div> 
     </div>
-    </form>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

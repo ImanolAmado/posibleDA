@@ -1,9 +1,9 @@
 <?php
-/* session_start();
+session_start();
 if(isset($_SESSION['email'])){
-   header("Location:welcome.php");
+   header("Location:login.php");
    exit();
-} */
+}
 
 ?>
 
@@ -49,25 +49,25 @@ if(isset($_SESSION['email'])){
             </nav>
         </div>
     </div><br>
-    <form method="post" action="registro1.php">
+    <form method="post" action="../controllers/validarRegistro.php">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="form-group ">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="nombre" required>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group ">
                         <label for="apellido">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" placeholder="apellido" required>
+                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="apellido" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="email">email</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="email" required>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="email" required>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@ if(isset($_SESSION['email'])){
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="password1">Password</label>
-                        <input type="password" class="form-control" id="password1" placeholder="Password" required>
+                        <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required>
                     </div>
                 </div>
                 <div class="col-lg-2">
@@ -87,7 +87,7 @@ if(isset($_SESSION['email'])){
                 </div>
                 <div class="col-lg-2">
                     <label for="rol">Rol</label><br>
-                    <select class="form-select" aria-label="Default select example" required>
+                    <select class="form-select" id="rol" name="rol" aria-label="Default select example" required>
                         <option selected value="usuario">Usuario</option>
                         <option value="Admin">Admin</option>
                     </select>
@@ -98,15 +98,7 @@ if(isset($_SESSION['email'])){
         </div>
     </form>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

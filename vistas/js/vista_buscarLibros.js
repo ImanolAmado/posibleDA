@@ -40,7 +40,7 @@ window.onload = function () {
 
         // largo del array de objetos json
         let largo = libros.length;
-        let imagen = "../img/imagenNoDisponible.jpg";               
+        let imagen = "../resources/img/imagenNoDisponible.jpg";               
         
         var listaLibros = []; // lista para objetos libro              
 
@@ -68,7 +68,7 @@ window.onload = function () {
                 if(Object.hasOwn(libros[i].volumeInfo.imageLinks, 'thumbnail') == true){
                 miLibro.imagen = libros[i].volumeInfo.imageLinks.thumbnail;
                 } else miLibro.imagen = libros[i].volumeInfo.imageLinks.smallThumbnail;
-           } else miLibro.imagen = "../img/imagenNoDisponible.jpg";
+           } else miLibro.imagen = "../resources/img/imagenNoDisponible.jpg";
 
             miLibro.descripcion = libros[i].volumeInfo.description;         
             miLibro.masInfo = libros[i].volumeInfo.infoLink;
