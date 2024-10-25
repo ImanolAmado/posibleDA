@@ -1,7 +1,7 @@
 <?php
 class ConectorBD{
     private $host = 'localhost';
-    private $nombreBD = 'libros';
+    private $nombreBD = 'libro';
     private $usuario = 'test';
     private $password = 'pass';
 
