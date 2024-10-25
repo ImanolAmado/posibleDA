@@ -207,7 +207,7 @@ window.onload = function () {
     }
 
         // Ventana emergente con mensaje de éxito
-        function ventanaSuccess(data){
+        function ventanaSuccess(data){           
 
             // Cojo el valor del ancho y de la altura de la pantalla
             let ancho = window.innerWidth;
@@ -220,6 +220,10 @@ window.onload = function () {
             // Creo una nueva ventana, 400px de alto y de 200px ancho
             let nuevaVentana=window.open("../vistas/ventanasEmergentes/vistaVentanaConfirmacion.html", "Pag",
             "left="+ancho+" top="+alto+"toolbar=yes,location=yes,menubar=yes,resizable=no,width=400,height=200" );
+        
+            nuevaVentana.document.getElementById("mensaje").innerText=data;
+               
+        
         }
 
        // Ventana emergente con mensaje de error
