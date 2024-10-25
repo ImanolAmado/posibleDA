@@ -31,7 +31,7 @@ if(isset($_SESSION['email'])){
     <div class="row">
         <div class="col-lg-12">
             <nav class="navbar navbar-expand-sm" style="background-color: #e3f2fd;">
-                <span class="navbar-brand mb-0 h1">POSIBLE DA</span>
+                <span class="navbar-brand mb-0 h1"><a href="../index.html">POSIBLE DA</a></span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -39,10 +39,7 @@ if(isset($_SESSION['email'])){
                 <div class="collapse navbar-collapse justify-content-end" id="opciones">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#registrar">Registrar</a>
+                            <a class="nav-link" href="login.php">Login</a>
                         </li>
                     </ul>
                 </div>

@@ -45,7 +45,10 @@ if(!isset($_SESSION['email'])){
                             <a class="nav-link" href="#reseñas">Mis reseñas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#añadirLibro">Añadir libro</a>
+                            <a class="nav-link" href="vista_buscarLibros.php">Añadir libro</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../controllers/logout.php">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -69,7 +72,6 @@ if(!isset($_SESSION['email'])){
                                 Lecturas
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Acción</a></li>
                                 <li><a class="dropdown-item" href="#">Leídos</a></li>
                                 <li><a class="dropdown-item" href="#">Leyendo</a></li>
                                 <li><a class="dropdown-item" href="#">Por leer</a></li>
@@ -78,14 +80,7 @@ if(!isset($_SESSION['email'])){
                                 <li><a class="dropdown-item" href="#">Todos</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-           <a href="#" class="nav-link dropdown-toggle" 
-              data-bs-toggle="dropdown" 
-              role="button" aria-expanded="false">LoginPage</a>
-           <ul class="dropdown-menu">
-               <li class="nav-item ">
-                  <a href="http://localhost:8080/LoginPage/Bootstrap-34" class="dropdown-item">Bootstrap</a>
-               </li>
+                       
            </ul>
      </li>
                     </ul>
