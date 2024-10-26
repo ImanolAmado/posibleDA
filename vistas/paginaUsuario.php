@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['email'])){
+if (!isset($_SESSION['email'])) {
     header("Location:login.php");
     exit();
 }
@@ -65,7 +65,12 @@ if(!isset($_SESSION['email'])){
                 <div class="collapse navbar-collapse justify-content-end" id="opciones">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#coleccion">Colección</a>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Colección
+                                </label>
+                            </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -80,9 +85,9 @@ if(!isset($_SESSION['email'])){
                                 <li><a class="dropdown-item" href="#">Todos</a></li>
                             </ul>
                         </li>
-                       
-           </ul>
-     </li>
+
+                    </ul>
+                    </li>
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Libros" aria-label="Search">
