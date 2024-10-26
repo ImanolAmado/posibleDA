@@ -210,6 +210,7 @@ window.onload = function () {
         function ventanaSuccess(data){      
             
             let msj = JSON.stringify(data);
+            console.log(msj);
 
             // Cojo el valor del ancho y de la altura de la pantalla
             let ancho = window.innerWidth;
@@ -223,7 +224,9 @@ window.onload = function () {
             let nuevaVentana=window.open("../vistas/ventanasEmergentes/vistaVentanaConfirmacion.html", "Pag",
             "left="+ancho+" top="+alto+"toolbar=yes,location=yes,menubar=yes,resizable=no,width=400,height=200" );
         
-            //nuevaVentana.document.getElementById("mensaje").innerHTML=msj;
+            nuevaVentana.onload = function(){
+            nuevaVentana.document.getElementById("mensaje").innerHTML=msj;
+            }
                        
         }     
         

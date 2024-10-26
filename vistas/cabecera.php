@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="js/listarMisLibros.js"></script>
     <title>Document</title>
     <style>
         .mb-0 {
@@ -17,7 +18,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="row">
         <div class="col-lg-12">
@@ -36,7 +36,21 @@
                             <a class="nav-link" href="#reseñas">Mis reseñas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#añadirLibro">Añadir libro</a>
+                            <a class="nav-link" href="vista_buscarLibros.php">Añadir libro</a>
+                        </li>
+                    <!-- Si se loguea un ADMIN, menú diferente -->
+                        <?php
+                        if($_SESSION['rol']=="admin"){?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#editarUsuario">Editar usuario</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#añadirImagen">Añadir imagen de perfil</a>
+                        </li>
+                        <?php } ?>  
+                        <!-- Fin MENÚ admin -->                      
+                        <li class="nav-item">
+                            <a class="nav-link" href="../controllers/logout.php">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -45,7 +59,14 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <nav class="navbar navbar-expand-sm" style="background-color: #d63384;">
+            <!-- Color diferente ADMIN -->
+            <nav class="navbar navbar-expand-sm"            
+                <?php if($_SESSION['rol']=="admin"){?>
+                style="background-color: #0dcaf0;">
+                <?php } else {?>
+                style="background-color: #d63384;">
+                <?php } ?>   
+            <!-- Fin definición colores -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -60,7 +81,6 @@
                                 Lecturas
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Acción</a></li>
                                 <li><a class="dropdown-item" href="#">Leídos</a></li>
                                 <li><a class="dropdown-item" href="#">Leyendo</a></li>
                                 <li><a class="dropdown-item" href="#">Por leer</a></li>
@@ -68,7 +88,7 @@
                                 <li><a class="dropdown-item" href="#">Abandonados</a></li>
                                 <li><a class="dropdown-item" href="#">Todos</a></li>
                             </ul>
-                        </li>
+                        </li>                     
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Libros" aria-label="Search">
