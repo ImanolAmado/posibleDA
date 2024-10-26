@@ -37,9 +37,7 @@ window.onload = function () {
 
     // función para pintar en pantalla los libros encontrados
     function pintarLibros(libros) {
-
-        // largo del array de objetos json
-        let largo = libros.length;
+       
         let imagen = "../resources/img/imagenNoDisponible.jpg";               
         
         var listaLibros = []; // lista para objetos libro              
@@ -207,26 +205,26 @@ window.onload = function () {
     }
 
         // Ventana emergente con mensaje de éxito
+        // librería sweetAlert  
+        // https://sweetalert.js.org/guides/#getting-started
         function ventanaEvento(data){      
             
             let msj = JSON.stringify(data);                      
 
-            if (msj.length==31){      
-                console.log(msj=="Libro insertado correctamente")      
+            if (msj.length==31){                     
             swal({
                 title: "¡Éxito!",
                 text: "Libro añadido correctamente",
                 icon: "success",       
-             })
-
+                })
             }
 
             if (msj.length==21){
-                swal({
-                    title: "Lo siento...",
-                    text: "Ya tienes este libro en tu lista",
-                    icon: "error",       
-                 })
+            swal({
+                title: "Lo siento...",
+                text: "Ya tienes este libro en tu lista",
+                icon: "error",       
+                })
             }          
             
         }     

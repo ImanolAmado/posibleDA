@@ -18,7 +18,7 @@ $librosPopulares = Libro::obtenerimagenLibro();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <title>Document</title>
+    <title>Posible da</title>
     <style>
         .mb-0 {
             margin-left: 50px !important;
@@ -58,7 +58,6 @@ $librosPopulares = Libro::obtenerimagenLibro();
         </div>
     </div><br>
 
-
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
@@ -69,13 +68,13 @@ $librosPopulares = Libro::obtenerimagenLibro();
     <div class="container-fluid">
         <div class="d-flex flex-wrap justify-content-start ms-5 gap-3">
             <?php foreach ($librosPopulares as $libro): ?>
-                <div class="card mb-5" style="max-width: 500px;">
+                <div class="card mb-5" style="width: 30%; height: 100%;">
                     <div class="row g-0">
                         <div class="col-md-2">
                             <img src="<?= $libro['img_libro'] ?>" class="img-fluid rounded-start" alt="imagen portada">
                         </div>
                         <div class="col-md-10">
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-column mt">
                                 <h5 class="card-title"><?= htmlspecialchars($libro['titulo']) ?></h5>
                                 <h6 class="card-text">Editorial: <?= htmlspecialchars($libro['editorial']) ?></h6>
                                 <h6 class="card-text" style="font-weight:400">Fecha edición: <?= htmlspecialchars($libro['fecha_publicacion']) ?></h6>
@@ -84,8 +83,7 @@ $librosPopulares = Libro::obtenerimagenLibro();
                     </div>
                 </div>
             <?php endforeach; ?>
-
-        </div>
+    </div>
         <br><br>
     </div>
     <div class="row">

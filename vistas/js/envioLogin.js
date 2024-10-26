@@ -1,7 +1,13 @@
 window.onload = function() {
 
-// Ponemos un listener al botón del formulario
+// Listener para el botón de volver
+let botonVolver =  document.getElementById("botonVolver");
+botonVolver.addEventListener("click", function(){
+    window.location.href ="../index.php";
 
+});
+
+// Ponemos un listener al botón de enviar formulario
 let botonLogin = document.getElementById("botonLogin");
 botonLogin.addEventListener("click", function(){
 
@@ -17,7 +23,7 @@ botonLogin.addEventListener("click", function(){
         
     // Llamada AJAX, enviando nuestro Objeto transformado
     // en JSON.        
-    fetch('../controllers/validarLogin2.php', {
+    fetch('../controllers/validarLogin.php', {
         method: 'POST',
         headers: {
     'Content-Type': 'application/json'    
@@ -33,9 +39,15 @@ botonLogin.addEventListener("click", function(){
     if (data.error) {
     console.error('Error:', data.error);
     // Error de login
-    // Insertamos el mensaje recibido del servidor en el dom.
-    let mensajeError = document.getElementById("mensajeError");
-    mensajeError.innerHTML=data.error; 
+    // Incorporamos librería SweetAlert para las alertas
+    // https://sweetalert.js.org/guides/#getting-started
+                  
+        swal({
+            title: "¡Error!",
+            text: data.error,
+            icon: "error",       
+            })       
+    
     } 
     else {
     // Login exitoso
@@ -45,7 +57,6 @@ botonLogin.addEventListener("click", function(){
 })  
 
 });
-
 
 }
 

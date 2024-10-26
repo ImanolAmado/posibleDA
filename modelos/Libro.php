@@ -253,6 +253,8 @@ class Libro {
 
    }
 
+
+   // Seleccionar Libros para mostrarlos en el index 
     static function obtenerimagenLibro(){
     $conectorBD = new ConectorBD();
     $conexion = $conectorBD->conectar();
