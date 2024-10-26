@@ -37,12 +37,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                     $_SESSION['usuario']=$usuarioEncontrado;
                     $_SESSION['id_usuario']=$idEncontrado;
                     $_SESSION['rol']=$rolEncontrado;
-                    error_log("Login correcto. Redirigiendo a paginaUsuario.php");
-
-                    if (headers_sent()) {
-                        die("Encabezados ya enviados.");
-                    }
-                    header("Location: ../vistas/paginaUsuario.php");    
+                                        
+                    header("Location: ../vistas/home.php");    
                     exit();     
            
                 } else echo "Lo siento password no coincide";  

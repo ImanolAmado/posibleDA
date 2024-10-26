@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION['email'])){
-    header("Location: paginaUsuario.php");
+    header("Location: ../vistas/home.php");
     exit();
  }
 ?>
@@ -13,6 +13,8 @@ if(isset($_SESSION['email'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
     <title>Login</title>
     <style>
         #titulo{
@@ -23,7 +25,7 @@ if(isset($_SESSION['email'])){
 <body>  
 
 <!-- Login -->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <h2 id="titulo">Bienvenidos a 'Posible da'</h2><br>
@@ -46,8 +48,13 @@ if(isset($_SESSION['email'])){
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
+        </div>
+        <div class="row">
+            <div class="col-lg-1">
+        <a href="../index.php" class="btn btn-secondary"><i class="bi bi-arrow-left-square-fill"></i> Atrás</a>
             </div>
-        </div> 
+            <div class="col-lg-11"></div>
+        </div>
         <div class="row">
             <div class="col-lg-12">
                 <h3 id="mensajeError"></h3>
@@ -57,3 +64,8 @@ if(isset($_SESSION['email'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+<?php
+include "footer.php";
+?>
