@@ -253,7 +253,19 @@ class Libro {
 
    }
 
+    static function obtenerimagenLibro(){
+    $conectorBD = new ConectorBD();
+    $conexion = $conectorBD->conectar();
+
+    $sql = "select titulo, fecha_publicacion, editorial, img_libro from libro";
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+   }
+
 }
+
+
 
 
 ?>

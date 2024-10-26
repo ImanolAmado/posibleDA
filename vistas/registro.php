@@ -31,7 +31,7 @@ if(isset($_SESSION['email'])){
     <div class="row">
         <div class="col-lg-12">
             <nav class="navbar navbar-expand-sm" style="background-color: #e3f2fd;">
-                <span class="navbar-brand mb-0 h1"><a href="../index.html">POSIBLE DA</a></span>
+                <span class="navbar-brand mb-0 h1"><a href="../index.php">POSIBLE DA</a></span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
                     <span class="navbar-toggler-icon"></span>
                 </button>
