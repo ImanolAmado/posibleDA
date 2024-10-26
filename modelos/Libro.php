@@ -249,7 +249,7 @@ class Libro {
         $stmt3->execute();
         return "Libro insertado correctamente";
 
-    } else return "Ese libro ya está en tu lista";
+    } else return "Ya tienes ese libro";
 
    }
 
