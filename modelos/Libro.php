@@ -256,14 +256,52 @@ class Libro {
 
    // Seleccionar Libros para mostrarlos en el index 
     static function obtenerimagenLibro(){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        $sql = "select titulo, fecha_publicacion, editorial, img_libro from libro";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+   }
+
+
+   // Seleccionamos los libros específicos de un usuario filtrando
+   // el resultado con los parámetros indicados
+   static function obtenerMisLibrosFiltrados($coleccion, $estado, $id_usuario){
     $conectorBD = new ConectorBD();
     $conexion = $conectorBD->conectar();
 
-    $sql = "select titulo, fecha_publicacion, editorial, img_libro from libro";
+    $sql = "select * from libro natural join usuario_libro where id_usuario=:id_usuario";
+    
+    // Si "estado" es diferente a"todos", añadimos la condición
+    if($estado!='todos'){
+        $sql = $sql." and estado=:estado";
+    }
+
+    // Si "colección" es "si" o "no", añadimos nueva condición.
+    // "todos" no necesita nueva condición 
+    if($coleccion=='si' or $coleccion=='no'){
+        $sql = $sql." and coleccion=:coleccion";
+    }
+
     $stmt = $conexion->prepare($sql);
+
+    $stmt->bindParam(':id_usuario', $id_usuario);
+    
+    if($estado!='todos'){
+    $stmt->bindParam(':estado', $estado);
+    }
+    
+    if($coleccion=='si' or $coleccion=='no'){
+        $stmt->bindParam(':coleccion', $coleccion);
+    }
+
+    // Ejecutamos y devolvemos resultados
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-   }
+    }
+   
 
 }
 

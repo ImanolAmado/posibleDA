@@ -58,28 +58,33 @@ include "cabecera.php";
     </div>   
 
 <div class="d-flex flex-wrap align-items-center justify-content-center">
-<div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="coleccion">
-  <label class="form-check-label" for="defaultCheck1">
-    En mi Colección
-  </label>
-</div>
-<select class="custom-select" id="seleccion">
-  <option selected>Selecciona!</option>
-  <option value="leidos">Leídos</option>
+
+<label for="coleccion">Colección</label>
+<select class="custom-select" id="coleccion" name="coleccion"> 
+  <option value="si">Si</option>
+  <option value="no">No</option>
+  <option value="todos" selected>Todos</option>
+</select>
+
+<label for="estado">Estado</label>
+<select class="custom-select" id="estado" name="estado"> 
+  <option value="leido">Leídos</option>
   <option value="leyendo">Leyendo</option>
-  <option value="porLeer">Por leer</option>
+  <option value="por leer">Por leer</option>
   <option value="wishlist">Wishlist</option>
-  <option value="abandonados">Abandonados</option>
-  <option value="todos">Todos</option>
+  <option value="abandonado">Abandonados</option>
+  <option value="todos" selected>Todos</option>
 </select>
 <input type="button" id="aplicarFiltro" value="filtrar">
 </div>
 
 <div class="container-fluid">
-    <div class="d-flex flex-wrap justify-content-start ms-5 gap-3">
+    <div id="tarjeta" class="d-flex flex-wrap justify-content-start ms-5 gap-3">
     <!-- Espacio para pintar nuestra colección de libros -->
     </div>
 </div>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="js/misLibros.js"></script> 
 <?php include "footer.php";?>

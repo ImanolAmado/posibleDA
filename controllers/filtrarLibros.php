@@ -15,10 +15,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Construimos el objeto "libro"
     
     $coleccion = $input->coleccion;
-    $seleccion = $input->seleccion;
+    $estado = $input->estado;
+    $id_usuario = $_SESSION['id_usuario'];
 
-    echo "Coleccion:".$coleccion." seleccion:.$seleccion.";
+    $misLibros = Libro::obtenerMisLibrosFiltrados($coleccion, $estado, $id_usuario);
 
+    if($misLibros==null){
+    // Responder 
+    echo json_encode("No se han encontrado libros");
+    }
+    else echo json_encode($misLibros);
     
 }
 

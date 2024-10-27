@@ -29,11 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $libro = new Libro($titulo,$editorial,$fecha,$sinopsis,$img_libro,$id_google,$masInfo,$autores);
-    $mensajes=""; 
-        
+    $mensajes="";         
     
     $id_usuario = $_SESSION['id_usuario'];
-
     
     // Antes de insertar, debemos comprobar si ya existe en la DB
     if(Libro::existeLibro($id_google)){
