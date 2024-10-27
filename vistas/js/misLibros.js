@@ -159,7 +159,8 @@ function llamarLibros(coleccion, estado){
         // Añadimos listener para cada botón
         a.addEventListener("click", function(event){
             let id = event.target.id.split("_");
-            let libroEditar = data[id];
+            let libroEditar = data[id[1]];
+            editarLibro(libroEditar);
 
         });    
         b.addEventListener("click", function(event){
@@ -223,11 +224,31 @@ function llamarLibros(coleccion, estado){
             }
           });
 
+        // Actualiza la lista modificada
+          location.reload();
+
     }
 
 
-    function editarLibro(event){
-        console.log("estoy en editar libros");
+    // Función para llama
+    function editarLibro(libroEditar){
+        console.log(libroEditar);
+        
+        let libroJSON = JSON.stringify(libroEditar);       
+        
+        // Llamada AJAX, enviando nuestro Objeto transformado
+        // en JSON.        
+        fetch('editarLibro.php', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'    
+        },        
+
+            body: libroJSON
+        })
+
+        //location.href="editarLibro.php";
+
     }
 } 
  
