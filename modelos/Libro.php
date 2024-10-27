@@ -186,10 +186,8 @@ class Libro {
     $stmt->execute();  
     $id=0;
     
-    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-       
-       $id = $row['id_google'];
-     
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){       
+       $id = $row['id_google'];    
     }
      
     if($id == null){
@@ -272,11 +270,16 @@ class Libro {
     $conectorBD = new ConectorBD();
     $conexion = $conectorBD->conectar();
 
-    $sql = "select * from libro natural join usuario_libro where id_usuario=:id_usuario";
+    $sql = "select libro.id_libro, libro.titulo, libro.editorial, libro.fecha_publicacion, 
+    libro.sinopsis, libro.img_libro, libro.mas_informacion, usuario_libro.id_usuario, 
+    usuario_libro.estado, usuario_libro.coleccion, review.id_review, review.review, 
+    review.puntuacion 
+    from libro natural join usuario_libro left join review
+on usuario_libro.id_usuario = review.id_usuario where usuario_libro.id_usuario=:id_usuario ";
     
     // Si "estado" es diferente a"todos", añadimos la condición
     if($estado!='todos'){
-        $sql = $sql." and estado=:estado";
+        $sql = $sql. " and estado=:estado";
     }
 
     // Si "colección" es "si" o "no", añadimos nueva condición.
@@ -302,6 +305,29 @@ class Libro {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
    
+
+    // Función que elimina un libro de la colección de un usuario
+    // y su review asociada (si la tuviese)
+    static function eliminarLibro($id_libro, $id_usuario){
+
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        // Borra libro de un usuario
+        $sql = "delete from usuario_libro where id_libro=:id_libro and id_usuario=:id_usuario";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':id_libro', $id_libro);
+        $stmt->bindParam(':id_usuario', $id_usuario);
+        $stmt->execute();
+
+        // Borra su posible reseña
+        $sql2 = "delete from review where id_libro=:id_libro and id_usuario=:id_usuario";
+        $stmt2 = $conexion->prepare($sql2);
+        $stmt2->bindParam(':id_libro', $id_libro);
+        $stmt2->bindParam(':id_usuario', $id_usuario);
+        $stmt2->execute();
+       
+    }
 
 }
 
