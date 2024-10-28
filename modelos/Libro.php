@@ -255,7 +255,8 @@ class Libro {
         $conectorBD = new ConectorBD();
         $conexion = $conectorBD->conectar();
 
-        $sql = "select titulo, fecha_publicacion, editorial, img_libro from libro";
+        $sql = "select id_libro, titulo, fecha_publicacion, editorial, img_libro from libro
+        order by id_libro desc limit 9";
         $stmt = $conexion->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

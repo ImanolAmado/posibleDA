@@ -65,10 +65,8 @@ function llamarLibros(coleccion, estado){
 
 
     // Ya tenemos los libros, los pintamos en pantalla
-    function pintarLibros(data){
-   
-        console.log(data);           
-
+    function pintarLibros(data){ 
+        
         for(let i=0; i<data.length; i++){
 
         let puntuacion="";
@@ -159,22 +157,21 @@ function llamarLibros(coleccion, estado){
         // Añadimos listener para cada botón
         a.addEventListener("click", function(event){
             let id = event.target.id.split("_");
-            let libroEditar = data[id[1]];
-            console.log(libroEditar);
-            window.location.href="editarLibro.php?id_libro=" + libroEditar.id_libro;
-           // editarLibro(libroEditar);
+            let libroEditar = data[id[1]];           
+            window.location.href="editarLibro.php?id_libro=" + libroEditar.id_libro;         
 
         });    
         b.addEventListener("click", function(event){           
-            let id = event.target.id.split("_");
+            let id = event.target.id.split("_");            
             let libroEliminar = data[id[1]];           
             eliminarLibro(libroEliminar); 
+           
         });
         }
     }
 
     function eliminarLibro(libroEliminar){            
-      
+        
         // SweetAlert con callback
         // https://es.stackoverflow.com/questions/503462/sweet-alert-confirm
         swal({
@@ -222,20 +219,12 @@ function llamarLibros(coleccion, estado){
               location.reload();
 
             } else {
-              swal("Acción cancelada");
+              swal("Acción cancelada");              
             }
           });
 
-
     }
-
-    // Función para llama
-    function editarLibro(libroEditar){
-                 
-
-        window.location.href="editarLibro.php?id_libro=" + libroEditar.id_libro;
-       
-    }
+   
 } 
  
          
