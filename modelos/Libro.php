@@ -217,10 +217,8 @@ class Libro {
     $stmt->execute();  
     $id=null;
     
-    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-       
-       $id = $row['id_usuario'];
-            
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){       
+       $id = $row['id_usuario'];            
     }
 
     // Si el id=null significa que e libro existe 
@@ -272,10 +270,9 @@ class Libro {
 
     $sql = "select libro.id_libro, libro.titulo, libro.editorial, libro.fecha_publicacion, 
     libro.sinopsis, libro.img_libro, libro.mas_informacion, usuario_libro.id_usuario, 
-    usuario_libro.estado, usuario_libro.coleccion, review.id_review, review.review, 
-    review.puntuacion 
-    from libro natural join usuario_libro left join review
-on usuario_libro.id_usuario = review.id_usuario where usuario_libro.id_usuario=:id_usuario ";
+    usuario_libro.estado, usuario_libro.coleccion, usuario_libro.review, 
+    usuario_libro.puntuacion 
+    from libro natural join usuario_libro where usuario_libro.id_usuario=:id_usuario ";
     
     // Si "estado" es diferente a"todos", añadimos la condición
     if($estado!='todos'){
@@ -306,8 +303,7 @@ on usuario_libro.id_usuario = review.id_usuario where usuario_libro.id_usuario=:
     }
    
 
-    // Función que elimina un libro de la colección de un usuario
-    // y su review asociada (si la tuviese)
+    // Función que elimina un libro de la colección de un usuario  
     static function eliminarLibro($id_libro, $id_usuario){
 
         $conectorBD = new ConectorBD();
@@ -318,20 +314,51 @@ on usuario_libro.id_usuario = review.id_usuario where usuario_libro.id_usuario=:
         $stmt = $conexion->prepare($sql);
         $stmt->bindParam(':id_libro', $id_libro);
         $stmt->bindParam(':id_usuario', $id_usuario);
-        $stmt->execute();
-
-        // Borra su posible reseña
-        $sql2 = "delete from review where id_libro=:id_libro and id_usuario=:id_usuario";
-        $stmt2 = $conexion->prepare($sql2);
-        $stmt2->bindParam(':id_libro', $id_libro);
-        $stmt2->bindParam(':id_usuario', $id_usuario);
-        $stmt2->execute();
+        $stmt->execute();      
        
     }
 
+    // Función que devuelve el libro que vamos a editar
+    static function editarLibro($id_libro, $id_usuario){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        $sql = "select libro.id_libro, libro.titulo, usuario_libro.id_usuario, 
+    usuario_libro.estado, usuario_libro.coleccion, usuario_libro.review, 
+    usuario_libro.puntuacion 
+    from libro natural join usuario_libro where usuario_libro.id_usuario=:id_usuario and usuario_libro.id_libro =:id_libro;";
+        $stmt = $conexion->prepare($sql);
+        $stmt ->bindParam(':id_libro', $id_libro);
+        $stmt ->bindParam(':id_usuario', $id_usuario);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    }
+
+
+    // Función para actualizar un libro
+    static function actualizarLibro($libro, $id_usuario){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        $id_libro = $libro->id_libro;
+        $estado = $libro->estado;
+        $coleccion = $libro->coleccion;
+        $puntuacion = $libro->puntuacion;
+        $review = $libro->review;
+
+        // Update de la tabla usuario_libro
+        $sql = "update usuario_libro set estado=:estado, coleccion=:coleccion, review=:review, puntuacion=:puntuacion where id_usuario=:id_usuario and id_libro=:id_libro";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':id_libro', $id_libro);
+        $stmt->bindParam(':id_usuario', $id_usuario);
+        $stmt->bindParam(':estado', $estado);
+        $stmt->bindParam(':coleccion', $coleccion);
+        $stmt->bindParam(':review', $review);
+        $stmt->bindParam(':puntuacion', $puntuacion);
+        $stmt->execute();   
+
+
+    }
+
 }
-
-
-
-
 ?>

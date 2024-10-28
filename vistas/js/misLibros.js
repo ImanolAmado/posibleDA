@@ -160,20 +160,21 @@ function llamarLibros(coleccion, estado){
         a.addEventListener("click", function(event){
             let id = event.target.id.split("_");
             let libroEditar = data[id[1]];
-            editarLibro(libroEditar);
+            console.log(libroEditar);
+            window.location.href="editarLibro.php?id_libro=" + libroEditar.id_libro;
+           // editarLibro(libroEditar);
 
         });    
-        b.addEventListener("click", function(event){
+        b.addEventListener("click", function(event){           
             let id = event.target.id.split("_");
-            let libroEliminar = data[id[1]];
-            eliminarLibro(libroEliminar);
-        })
+            let libroEliminar = data[id[1]];           
+            eliminarLibro(libroEliminar); 
+        });
         }
     }
 
-    function eliminarLibro(libroEliminar){
-               
-        
+    function eliminarLibro(libroEliminar){            
+      
         // SweetAlert con callback
         // https://es.stackoverflow.com/questions/503462/sweet-alert-confirm
         swal({
@@ -184,8 +185,7 @@ function llamarLibros(coleccion, estado){
             dangerMode: true,
          })
           .then((willDelete) => {
-            if (willDelete) {
-              console.log(libroEliminar);                   
+            if (willDelete) {                          
                    
                 let libroJSON = JSON.stringify(libroEliminar);       
         
@@ -219,36 +219,22 @@ function llamarLibros(coleccion, estado){
                 swal("Libro eliminado correctamente", {
                 icon: "success",
               });
+              location.reload();
+
             } else {
               swal("Acción cancelada");
             }
           });
 
-        // Actualiza la lista modificada
-          location.reload();
 
     }
 
-
     // Función para llama
     function editarLibro(libroEditar){
-        console.log(libroEditar);
-        
-        let libroJSON = JSON.stringify(libroEditar);       
-        
-        // Llamada AJAX, enviando nuestro Objeto transformado
-        // en JSON.        
-        fetch('editarLibro.php', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'    
-        },        
+                 
 
-            body: libroJSON
-        })
-
-        //location.href="editarLibro.php";
-
+        window.location.href="editarLibro.php?id_libro=" + libroEditar.id_libro;
+       
     }
 } 
  
