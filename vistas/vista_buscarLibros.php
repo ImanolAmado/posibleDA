@@ -6,33 +6,36 @@ if(!isset($_SESSION['email'])){
     exit();
 }
 
-
 include "cabecera.php";
 ?>
-
-   
+<div class="row justify-content-center">
+    <div class="col-lg-12">
+        <!-- Color diferente ADMIN -->
+        <nav class="navbar navbar-expand-sm"            
+        <?php if($_SESSION['rol']=="admin"){?>
+            style="background-color: #0dcaf0; height: 80px;">
+        <?php } else {?>
+            style="background-color: #d63384; height: 80px;">
+        <?php } ?>   
+        <!-- Fin definición colores --> 
+          <!-- fila búsqueda -->
+        
+            <div class="d-flex align-items-center justify-content-center w-100 p-3">           
+                <label for="libro" class="custom-select mx-2">Búsqueda</label>
+                <input type="text" class="custom-select mx-2" id="libro" name="libro" required>
+                <input type="button" id="miBoton" value="¡vamos!" class="btn btn-primary"><br><br>
+            </div>       
+       
+        </nav>
+    </div>
+</div>
+<br><br>  
 <!-- clase container -->
-<div class="container">
-    
-    <!-- fila búsqueda -->
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">           
-            <label for="libro">Búsqueda</label>
-            <input type="text" id="libro" name="libro" required>
-            <input type="button" id="miBoton" value="¡Vamos!"><br><br>
-        </div>       
-    </div>   
-
-    <div class="row" id="textoResultados">
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">   
-            <h4>Resultados</h4>
-        </div>
-    </div><br><br>    
+<div class="container">  
     
     <div id="tarjeta">    
     <!-- Aquí va la tarjeta con el libro -->    
     </div>
-
 
 </div> <!--Cierre container -->
 

@@ -5,6 +5,8 @@ var tarjeta = document.getElementById("tarjeta");
 llamarLibros("todos", "todos");
 
 
+// Listener para aplicar filtros de búsqueda
+
 let aplicarFiltro = document.getElementById("aplicarFiltro");
 aplicarFiltro.addEventListener("click", function(){
 
@@ -167,7 +169,7 @@ function llamarLibros(coleccion, estado){
             eliminarLibro(libroEliminar); 
            
         });
-        }
+        }        
     }
 
     function eliminarLibro(libroEliminar){            
