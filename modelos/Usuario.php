@@ -114,6 +114,57 @@ class Usuario
         return $resultado;
         
     }
+
+    static function editarUsuario($id_usuario){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+    
+        
+        // Consulta SQL login
+        $sql = "select id_usuario, nombre, apellido, email, password, rol from usuario where id_usuario = :id_usuario";
+
+        $stmt = $conexion->prepare($sql);
+
+        // vincular parámetros     
+        $stmt->bindParam(':id_usuario',  $id_usuario);
+
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+        
+    }
+
+    static function actualizarUsuario($usuario, $id_usuario){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        $nombre = $usuario->nombre;
+        $apellido = $usuario->apellido;
+        $email = $usuario->email;
+        $password = password_hash($usuario->password, PASSWORD_DEFAULT); //Hashear el password
+        $rol = $usuario->rol;
+
+        // Update de la tabla usuario_libro
+        $sql = "update usuario set nombre=:nombre, apellido=:apellido, email=:email, password=:password, rol=:rol where id_usuario=:id_usuario";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':id_usuario', $id_usuario);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':apellido', $apellido);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':rol', $rol);
+        $stmt->execute();   
+    }
+
+    static function validarEmail($id_usuario){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        $sql = "select email from usuario where id_usuario=:id_usuario";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':id_usuario', $is_usuario);
+        $stmt->execute();
+
+    }
 }
 
 ?>
