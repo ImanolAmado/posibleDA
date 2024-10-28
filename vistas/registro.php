@@ -77,12 +77,6 @@ if(isset($_SESSION['email'])){
                     </div>
                 </div>
                 <div class="col-lg-2">
-                    <div class="form-group">
-                        <label for="fecha_nacimiento">Fecha de nacimiento</label><br>
-                        <input type="date" id="fecha" name="fecha" required><br>
-                    </div>
-                </div>
-                <div class="col-lg-2">
                     <label for="rol">Rol</label><br>
                     <select class="form-select" id="rol" name="rol" aria-label="Default select example" required>
                         <option selected value="usuario">Usuario</option>
