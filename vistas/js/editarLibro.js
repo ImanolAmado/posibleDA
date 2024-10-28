@@ -22,13 +22,11 @@ window.onload = function () {
         .then(response => response.json())
         .then(data => {
             pintarDatos(data);
-            console.log(data);
+           
         })
 
 
-    function pintarDatos(libro) {
-
-        console.log(libro);
+    function pintarDatos(libro) {        
 
         let titulo = document.getElementById("titulo");
         titulo.innerHTML = libro[0].titulo;
@@ -64,9 +62,6 @@ window.onload = function () {
             libroActualizar.puntuacion = selectPuntuacion.value;
             libroActualizar.review = textarea.value;
 
-            console.log(selectPuntuacion.value);
-            console.log(textarea.value);
-
             let libroActualizarJSON = JSON.stringify(libroActualizar);
 
             fetch('../controllers/controller_actualizar.php', {
@@ -80,11 +75,11 @@ window.onload = function () {
 
                 // si no hay error, recibimos valor como objeto "data"
                 .then(response => response.json())
-                .then(data => {
-                    //window.location.href = "home.php";
-                    
-                })
-
+                .then(data => {    
+                    console.log("hola");
+                    window.location.href = "home.php";                                        
+                })          
+                       
         }
 
         let cancelar = document.getElementById("cancelar");

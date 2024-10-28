@@ -25,8 +25,7 @@ window.onload = function () {
 
         try {
             let response = await fetch(url);
-            let result = await response.json();
-            console.log(result);
+            let result = await response.json();            
             let libros = result.items;
             pintarLibros(libros);
         } catch (error) {
@@ -196,8 +195,7 @@ window.onload = function () {
         if (data.error) {
         console.error('Error:', data.error);
         //ventanaSuccess(data.error);
-    } else {  
-        console.log(data);     
+    } else {             
         ventanaEvento(data);
         }   
     })  

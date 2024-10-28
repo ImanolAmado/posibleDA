@@ -60,10 +60,10 @@ $librosPopulares = Libro::obtenerimagenLibro();
 
     <div class="row">
         <div class="col-lg-1"></div>
-        <div class="col-lg-3">
-            <h3>Populares</h3>
+        <div class="col-lg-4">
+            <h4>Nuestros miembros están leyendo...</h4>
         </div>
-        <div class="col-lg-8"></div>
+        <div class="col-lg-7"></div>
     </div><br>
     <div class="container-fluid">
         <div class="d-flex flex-wrap justify-content-start ms-5 gap-3">
@@ -84,43 +84,52 @@ $librosPopulares = Libro::obtenerimagenLibro();
                 </div>
             <?php endforeach; ?>
     </div>
-        <br><br>
+        <br>
     </div>
-    <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-3">
-            <h3>¿Qué es 'Posible da'?</h3>
+    <div class="row">    
+        <div class="col-lg-12">
+            <h3 class="text-center">¿Qué es Posible da?</h3>
         </div>
-        <div class="col-lg-8"></div>
+    <br><br>
     </div>
-
     <div class="row">
-        <div class="col-lg-1"></div>
+        <div class="col-lg-2"></div>
         <div class="col-lg-8">
-            <h5>Posible da es un lugar para hacer un seguimiento de tus libros.
-                Manteniendo tu lista de libros actualizada, calificada y para agregar los próximos libros
-                a tu lista de deseos.
-                <div class="col-lg-3"></div>
+            <h5 class="text-center">Posible da es un lugar para hacer un seguimiento de tu historia como lector.
+                ¿Qué libros has leído?, ¿Cúales te gustaron más y cúales mantienes aún en tu biblioteca personal? 
+                 Manten tu lista de libros actualizada y ordenada.. y no olvides añadir a tu lista de deseos 
+                aquellos libros que no puedes esperar a leer.</h5>
         </div>
+        <div class="col-lg-2"></div>    
+    </div>
+    <br><br>
+    <div class="row">    
+        <div class="col-lg-12">
+            <h4 class="text-center">¿Comenzamos?</h4>
+        </div>
+    <br><br>   
+    <div class="row"> 
+        <div class="col-lg-12">
+            <img src="resources/img/portadas2.jpg"
+         width="40%" class="rounded mx-auto d-block" alt="collage de portadas de libros">
+        </div>
+    </div>  
+    
+    <div class="row">       
+        <div class="col-lg-12">
+            <h3 class="text-center">¡Registrate ahora!</h3>
+        </div>       
     </div>
     <br><br>
     <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-3">
-            <h3>En qué consiste?</h3>
-        </div>
-        <div class="col-lg-8"></div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-1"></div>
+        <div class="col-lg-2"></div>
         <div class="col-lg-8">
-            <h5>Posible da es un lugar para hacer un seguimiento de tus libros.
-                Manteniendo tu lista de libros actualizada, calificada y para agregar los próximos libros
-                a tu lista de deseos.
-                <div class="col-lg-3"></div>
+            <h5 class="text-center">Nuestro servicio es totalmente gratuito, comienza hoy mismo a disfrutar 
+                de las ventajas de ser miembro de Posible Da. 
         </div>
-        <br><br>
-        <?php
-        include_once "vistas/footer.php";
-        ?>
+        <div class="col-lg-2"></div>        
+    </div>
+    
+    <?php
+    include_once "vistas/footer.php";
+    ?>
