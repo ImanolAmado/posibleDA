@@ -9,7 +9,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
    
     if(empty ($_POST['email']) || empty ($_POST['pass']) || empty ($_POST['nombre']) || empty ($_POST['apellido']) || empty ($_POST['rol'])){
 
-        $mensajeError= "¡Error! Ningún campo del login puede estar vacío";   
+        $mensajeError= "¡Error! Ningún campo puede estar vacío";   
               
     } else {
 
@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
             } else $mensajeError= "No existe ese email en la base de datos";
         
-        } else $mensajeError= "Formato de email incorrecto";
+        } else $mensajeError= "Formato de email incorrecto";        
     } 
 }
 

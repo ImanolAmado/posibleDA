@@ -186,10 +186,8 @@ class Libro {
     $stmt->execute();  
     $id=0;
     
-    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-       
-       $id = $row['id_google'];
-     
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){       
+       $id = $row['id_google'];    
     }
      
     if($id == null){
@@ -219,10 +217,8 @@ class Libro {
     $stmt->execute();  
     $id=null;
     
-    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-       
-       $id = $row['id_usuario'];
-            
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){       
+       $id = $row['id_usuario'];            
     }
 
     // Si el id=null significa que e libro existe 
@@ -249,23 +245,120 @@ class Libro {
         $stmt3->execute();
         return "Libro insertado correctamente";
 
-    } else return "Ese libro ya está en tu lista";
+    } else return "Ya tienes ese libro";
 
    }
 
+
+   // Seleccionar Libros para mostrarlos en el index 
     static function obtenerimagenLibro(){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        $sql = "select titulo, fecha_publicacion, editorial, img_libro from libro";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+   }
+
+
+   // Seleccionamos los libros específicos de un usuario filtrando
+   // el resultado con los parámetros indicados
+   static function obtenerMisLibrosFiltrados($coleccion, $estado, $id_usuario){
     $conectorBD = new ConectorBD();
     $conexion = $conectorBD->conectar();
 
-    $sql = "select titulo, fecha_publicacion, editorial, img_libro from libro";
+    $sql = "select libro.id_libro, libro.titulo, libro.editorial, libro.fecha_publicacion, 
+    libro.sinopsis, libro.img_libro, libro.mas_informacion, usuario_libro.id_usuario, 
+    usuario_libro.estado, usuario_libro.coleccion, usuario_libro.review, 
+    usuario_libro.puntuacion 
+    from libro natural join usuario_libro where usuario_libro.id_usuario=:id_usuario ";
+    
+    // Si "estado" es diferente a"todos", añadimos la condición
+    if($estado!='todos'){
+        $sql = $sql. " and estado=:estado";
+    }
+
+    // Si "colección" es "si" o "no", añadimos nueva condición.
+    // "todos" no necesita nueva condición 
+    if($coleccion=='si' or $coleccion=='no'){
+        $sql = $sql." and coleccion=:coleccion";
+    }
+
     $stmt = $conexion->prepare($sql);
+
+    $stmt->bindParam(':id_usuario', $id_usuario);
+    
+    if($estado!='todos'){
+    $stmt->bindParam(':estado', $estado);
+    }
+    
+    if($coleccion=='si' or $coleccion=='no'){
+        $stmt->bindParam(':coleccion', $coleccion);
+    }
+
+    // Ejecutamos y devolvemos resultados
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-   }
+    }
+   
+
+    // Función que elimina un libro de la colección de un usuario  
+    static function eliminarLibro($id_libro, $id_usuario){
+
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        // Borra libro de un usuario
+        $sql = "delete from usuario_libro where id_libro=:id_libro and id_usuario=:id_usuario";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':id_libro', $id_libro);
+        $stmt->bindParam(':id_usuario', $id_usuario);
+        $stmt->execute();      
+       
+    }
+
+    // Función que devuelve el libro que vamos a editar
+    static function editarLibro($id_libro, $id_usuario){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        $sql = "select libro.id_libro, libro.titulo, usuario_libro.id_usuario, 
+    usuario_libro.estado, usuario_libro.coleccion, usuario_libro.review, 
+    usuario_libro.puntuacion 
+    from libro natural join usuario_libro where usuario_libro.id_usuario=:id_usuario and usuario_libro.id_libro =:id_libro;";
+        $stmt = $conexion->prepare($sql);
+        $stmt ->bindParam(':id_libro', $id_libro);
+        $stmt ->bindParam(':id_usuario', $id_usuario);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+    }
+
+
+    // Función para actualizar un libro
+    static function actualizarLibro($libro, $id_usuario){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        $id_libro = $libro->id_libro;
+        $estado = $libro->estado;
+        $coleccion = $libro->coleccion;
+        $puntuacion = $libro->puntuacion;
+        $review = $libro->review;
+
+        // Update de la tabla usuario_libro
+        $sql = "update usuario_libro set estado=:estado, coleccion=:coleccion, review=:review, puntuacion=:puntuacion where id_usuario=:id_usuario and id_libro=:id_libro";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':id_libro', $id_libro);
+        $stmt->bindParam(':id_usuario', $id_usuario);
+        $stmt->bindParam(':estado', $estado);
+        $stmt->bindParam(':coleccion', $coleccion);
+        $stmt->bindParam(':review', $review);
+        $stmt->bindParam(':puntuacion', $puntuacion);
+        $stmt->execute();   
+
+
+    }
 
 }
-
-
-
-
 ?>

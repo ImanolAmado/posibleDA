@@ -3,19 +3,17 @@ session_start();
 include_once "../modelos/Usuario.php";
 
 
-if($_SERVER["REQUEST_METHOD"]=="POST"){    
+if($_SERVER["REQUEST_METHOD"]=="POST"){   
     
-    if(empty ($_POST['email']) || empty ($_POST['pass'])){
+    $mensajeError="";   
+    $input = json_decode(file_get_contents('php://input'), true);
 
-        echo "¡Error! Ningún campo del login puede estra vacío";   
-              
-    } else {
-
-        if(emailValido($_POST['email'])){
-        
-            $emailIntroducido =  $_POST['email'];          
+    if (isset($input['email']) || isset($input['pass'])) {
+      
+        if(emailValido($input['email'])){        
+            $emailIntroducido =  $input['email'];          
        
-            $passIntroducido = $_POST['pass'];      
+            $passIntroducido = $input['pass'];      
         
             // para hashear contraseñas:
             // https://onlinephp.io/password-hash    
@@ -30,7 +28,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 $rolEncontrado = $resultado['rol'];
                 $usuarioEncontrado = $resultado['nombre'];
                 $idEncontrado = $resultado['id_usuario'];
-
         
                 if (password_verify($passIntroducido,$passwordEncontrado)){                        
                     $_SESSION['email']=$emailEncontrado;
@@ -38,16 +35,20 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                     $_SESSION['id_usuario']=$idEncontrado;
                     $_SESSION['rol']=$rolEncontrado;
                                         
-                    header("Location: ../vistas/home.php");    
-                    exit();     
+                    echo json_encode(["success" => true, "message" => "Login válido"]);
+                    exit(); 
            
-                } else echo "Lo siento password no coincide";  
+                } else $mensajeError="¡Error! password incorrecto";  
 
-            } else echo "No existe ese email en la base de datos";
+            } else $mensajeError="¡Error! email no existe";
         
-        } else echo "Formato de email incorrecto";
-    }
+        } else $mensajeError="¡Error! formato de email incorrecto";
+   
+    } else $mensajeError = "Ningún campo del login puede estar vacío";    
+        
+    echo json_encode(["success" => false, "error" => $mensajeError]);
 }
+
 function emailValido($email){
     $email=htmlspecialchars($email);
     if (filter_var($email, FILTER_VALIDATE_EMAIL)){

@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = function () {    
 
     let tarjeta = document.getElementById("tarjeta");
     var listaLibros = []; // lista para objetos libro    
@@ -37,9 +37,7 @@ window.onload = function () {
 
     // función para pintar en pantalla los libros encontrados
     function pintarLibros(libros) {
-
-        // largo del array de objetos json
-        let largo = libros.length;
+       
         let imagen = "../resources/img/imagenNoDisponible.jpg";               
         
         var listaLibros = []; // lista para objetos libro              
@@ -197,37 +195,38 @@ window.onload = function () {
           
         if (data.error) {
         console.error('Error:', data.error);
-        ventanaSuccess(data.error);
+        //ventanaSuccess(data.error);
     } else {  
         console.log(data);     
-        ventanaSuccess(data);
+        ventanaEvento(data);
         }   
     })  
 
     }
 
         // Ventana emergente con mensaje de éxito
-        function ventanaSuccess(data){      
+        // librería sweetAlert  
+        // https://sweetalert.js.org/guides/#getting-started
+        function ventanaEvento(data){      
             
-            let msj = JSON.stringify(data);
-            console.log(msj);
+            let msj = JSON.stringify(data);                      
 
-            // Cojo el valor del ancho y de la altura de la pantalla
-            let ancho = window.innerWidth;
-            let alto = window.innerHeight;      
-
-            // Cálculo de la posición centrada 
-            ancho = (ancho / 2) - 150;
-            alto = (alto / 2) - 150;               
-                  
-            // Creo una nueva ventana, 400px de alto y de 200px ancho
-            let nuevaVentana=window.open("../vistas/ventanasEmergentes/vistaVentanaConfirmacion.html", "Pag",
-            "left="+ancho+" top="+alto+"toolbar=yes,location=yes,menubar=yes,resizable=no,width=400,height=200" );
-        
-            nuevaVentana.onload = function(){
-            nuevaVentana.document.getElementById("mensaje").innerHTML=msj;
+            if (msj.length==31){                     
+            swal({
+                title: "¡Éxito!",
+                text: "Libro añadido correctamente",
+                icon: "success",       
+                })
             }
-                       
+
+            if (msj.length==21){
+            swal({
+                title: "Lo siento...",
+                text: "Ya tienes este libro en tu lista",
+                icon: "error",       
+                })
+            }          
+            
         }     
         
     }
