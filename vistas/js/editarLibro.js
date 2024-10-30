@@ -75,13 +75,7 @@ window.onload = function () {
 
                 // si no hay error, recibimos valor como objeto "data"
                 .then(response => response.json())
-                .then(data => {    
-                    
-                    swal({
-                        title: "¡Bien hecho!",
-                        text: "El libro ha sido modificado correctamente",
-                        icon: "success",       
-                        })  
+                .then(data => {   
 
                     window.location.href = "home.php";                                        
                 })          

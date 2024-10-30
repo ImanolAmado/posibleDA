@@ -155,14 +155,40 @@ class Usuario
         $stmt->execute();   
     }
 
-    static function validarEmail($id_usuario){
+    static function existeEmail($emailNuevo){
         $conectorBD = new ConectorBD();
         $conexion = $conectorBD->conectar();
 
-        $sql = "select email from usuario where id_usuario=:id_usuario";
+        $sql = "select email from usuario";
         $stmt = $conexion->prepare($sql);
-        $stmt->bindParam(':id_usuario', $is_usuario);
         $stmt->execute();
+        
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($row['email'] === $emailNuevo) {
+                return true;
+            }
+        }return false;
+
+    }
+
+    static function registro($usuarioNuevo){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+        $nombre = $usuarioNuevo->nombre;
+        $apellido = $usuarioNuevo->apellido;
+        $email = $usuarioNuevo->email;
+        $password = password_hash($usuarioNuevo->pass, PASSWORD_DEFAULT); //Hashear el password
+        $rol = $usuarioNuevo->rol;
+
+        $sql = "insert into usuario (nombre, apellido, email, password, rol) values(:nombre, :apellido, :email, :password, :rol)";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':apellido', $apellido);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':rol', $rol);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
 
     }
 }
