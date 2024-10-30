@@ -7,7 +7,6 @@ if(!isset($_SESSION['email'])){
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +25,6 @@ if(!isset($_SESSION['email'])){
         }
     </style>
 </head>
-
 <body>
     <div class="row">
         <div class="col-lg-12">

@@ -75,8 +75,8 @@ window.onload = function () {
 
                 // si no hay error, recibimos valor como objeto "data"
                 .then(response => response.json())
-                .then(data => {   
-
+                .then(data => {                       
+                                     
                     window.location.href = "home.php";                                        
                 })          
                        
