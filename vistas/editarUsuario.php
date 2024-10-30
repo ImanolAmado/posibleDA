@@ -17,6 +17,10 @@ include "cabecera.php";
             style="background-color: #d63384; height: 80px;">
         <?php } ?>   
         <!-- Fin definición colores --> 
+        
+        <div class="ms-5"> <!-- imagen perfil usuario -->
+            <img src="<?php echo $_SESSION['userPic'];?>" height="60px" alt="imagen usuario">
+        </div>
         </nav>
     </div>
 </div>

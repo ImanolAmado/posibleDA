@@ -2,11 +2,10 @@
 session_start();
 
 if(!isset($_SESSION['email'])){
-    header("Location:login.html");
+    header("Location:login.php");
     exit();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +25,6 @@ if(!isset($_SESSION['email'])){
         }
     </style>
 </head>
-
 <body>
     <div class="row">
         <div class="col-lg-12">

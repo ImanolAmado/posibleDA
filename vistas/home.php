@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['email'])){
-    header("Location:login.html");
+    header("Location:login.php");
     exit();
 }
 
@@ -19,6 +19,10 @@ include "cabecera.php";
         <?php } ?>   
         <!-- Fin definición colores --> 
 
+        <div class="ms-5"> <!-- imagen perfil usuario -->
+            <img src="<?php echo $_SESSION['userPic'];?>" height="60px" alt="imagen usuario">
+        </div>
+
         <!--Elementos de navbar, los dos select y el botón centrados -->
         <div class="d-flex flex-wrap align-items-center justify-content-center w-100 p-3">
             <label for="coleccion">Colección</label>
@@ -27,7 +31,6 @@ include "cabecera.php";
             <option value="no">No</option>
             <option value="todos" selected>Todos</option>
             </select>
-
             <label for="estado">Estado</label>
             <select class="custom-select mx-2" id="estado" name="estado"> 
             <option value="leido">Leídos</option>
@@ -37,8 +40,8 @@ include "cabecera.php";
             <option value="abandonado">Abandonados</option>
             <option value="todos" selected>Todos</option>
             </select>
-            <button type="button" id="aplicarFiltro" class="btn btn-primary">filtrar</button>           
-        </div> 
+            <button type="button" id="aplicarFiltro" class="btn btn-primary" class="me-5">filtrar</button>           
+        </div>         
         </nav>
     </div>
 </div>   

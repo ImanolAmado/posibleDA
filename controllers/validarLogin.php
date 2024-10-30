@@ -28,12 +28,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 $rolEncontrado = $resultado['rol'];
                 $usuarioEncontrado = $resultado['nombre'];
                 $idEncontrado = $resultado['id_usuario'];
+                $userPicEncontrado = $resultado['img_perfil'];
         
                 if (password_verify($passIntroducido,$passwordEncontrado)){                        
                     $_SESSION['email']=$emailEncontrado;
                     $_SESSION['usuario']=$usuarioEncontrado;
                     $_SESSION['id_usuario']=$idEncontrado;
                     $_SESSION['rol']=$rolEncontrado;
+                    $_SESSION['userPic']=$userPicEncontrado;
                                         
                     echo json_encode(["success" => true, "message" => "Login válido"]);
                     exit(); 

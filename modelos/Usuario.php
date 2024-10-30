@@ -101,7 +101,7 @@ class Usuario
         $conexion = $conectorBD->conectar();
         
         // Consulta SQL login
-        $sql = "select id_usuario, nombre, email, password, rol from usuario where email = :email";
+        $sql = "select id_usuario, nombre, email, password, rol, img_perfil from usuario where email = :email";
 
         $stmt = $conexion->prepare($sql);
 
@@ -164,6 +164,26 @@ class Usuario
         $stmt->bindParam(':id_usuario', $is_usuario);
         $stmt->execute();
 
+    }
+
+    static function cogerPics(){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        $sql = "select id_imagen, user_pic from imagen_usuario";
+        $stmt = $conexion->prepare($sql);        
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    static function guadarPic($ruta){
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        $sql = "insert into imagen_usuario (user_pic) values (:user_pic)";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':user_pic', $ruta);
+        $stmt->execute();
     }
 }
 

@@ -218,6 +218,7 @@ function llamarLibros(coleccion, estado){
                 swal("Libro eliminado correctamente", {
                 icon: "success",
               });
+             
               location.reload();
 
             } else {
