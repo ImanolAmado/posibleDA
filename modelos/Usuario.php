@@ -117,8 +117,7 @@ class Usuario
 
     static function editarUsuario($id_usuario){
         $conectorBD = new ConectorBD();
-        $conexion = $conectorBD->conectar();
-    
+        $conexion = $conectorBD->conectar();    
         
         // Consulta SQL login
         $sql = "select id_usuario, nombre, apellido, email, password, rol from usuario where id_usuario = :id_usuario";
