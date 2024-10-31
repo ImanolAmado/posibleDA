@@ -178,13 +178,15 @@ class Usuario
         $email = $usuarioNuevo->email;
         $password = password_hash($usuarioNuevo->pass, PASSWORD_DEFAULT); //Hashear el password
         $rol = $usuarioNuevo->rol;
+        $pic = $usuarioNuevo->pic;
 
-        $sql = "insert into usuario (nombre, apellido, email, password, rol) values(:nombre, :apellido, :email, :password, :rol)";
+        $sql = "insert into usuario (nombre, apellido, email, password, img_perfil, rol) values(:nombre, :apellido, :email, :password, :pic, :rol)";
         $stmt = $conexion->prepare($sql);
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':apellido', $apellido);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':pic', $pic);
         $stmt->bindParam(':rol', $rol);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);

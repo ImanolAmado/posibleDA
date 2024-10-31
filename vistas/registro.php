@@ -87,6 +87,7 @@ if (isset($_SESSION['email'])) {
                     </div>
                 </div>
             </div>
+            <!-- El usuario no debería poder registrarse como "admin"
             <div class="row">
                     <label for="rol">Rol</label><br>
                     <div class="col-lg-4">
@@ -95,7 +96,7 @@ if (isset($_SESSION['email'])) {
                         <option value="Admin">Admin</option>
                     </select>
                 </div>
-            </div>
+            </div> -->
             <br>
             <input type="button" class="btn btn-primary" id="guardar" name="guardar" value="Guardar">
             <input type="button" class="btn btn-secondary" id="cancelar" name="cancelar" value="Cancelar">
