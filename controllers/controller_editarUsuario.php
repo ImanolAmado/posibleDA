@@ -10,12 +10,13 @@ if(!isset($_SESSION['email'])){
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recibir datos de la solicitud POST
+    $idusuario = json_decode(file_get_contents('php://input'), false);
 
-    $usuario = Usuario::editarUsuario($_SESSION['id_usuario']);
+    $usuario = Usuario::editarUsuario($idusuario);
 
     if($usuario==null){
         // Responder 
-        echo json_encode("No se han encontrado libros");
+        echo json_encode("No se han encontrado usuario");
         }
         else echo json_encode($usuario);
 

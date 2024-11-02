@@ -6,18 +6,16 @@ class Usuario
     private $id_usuario;
     private $nombre;
     private $apellido;
-    private $fecha_nacimiento;
     private $email;
     private $password;
     private $img_perfil;
     private $rol;
 
-    function __construct($id_usuario, $nombre, $apellido, $fecha_nacimiento, $email, $password, $img_perfil, $rol)
+    function __construct($id_usuario, $nombre, $apellido, $email, $password, $img_perfil, $rol)
     {
         $this->id_usuario = $id_usuario;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
-        $this->fecha_nacimiento = $fecha_nacimiento;
         $this->email = $email;
         $this->password = $password;
         $this->img_perfil = $img_perfil;
@@ -37,10 +35,6 @@ class Usuario
     function getApellido()
     {
         return $this->apellido;
-    }
-    function getFecha_nacimiento()
-    {
-        return $this->fecha_nacimiento;
     }
     function getEmail()
     {
@@ -69,10 +63,6 @@ class Usuario
     function setApellido($apellido)
     {
         $this->apellido = $apellido;
-    }
-    function setFecha_nacimiento($fecha_nacimiento)
-    {
-        $this->fecha_nacimiento = $fecha_nacimiento;
     }
     function setEmail($email)
     {
@@ -139,7 +129,7 @@ class Usuario
         $nombre = $usuario->nombre;
         $apellido = $usuario->apellido;
         $email = $usuario->email;
-        $password = password_hash($usuario->password, PASSWORD_DEFAULT); //Hashear el password
+        $password = $usuario->password; 
         $rol = $usuario->rol;
 
         // Update de la tabla usuario_libro
@@ -210,6 +200,66 @@ class Usuario
         $sql = "insert into imagen_usuario (user_pic) values (:user_pic)";
         $stmt = $conexion->prepare($sql);
         $stmt->bindParam(':user_pic', $ruta);
+        $stmt->execute();
+    }
+
+    static function todosLosUsuarios()
+    {
+        $conectorBD = new ConectorBD();
+        $conexion = $conectorBD->conectar();
+
+        // Consulta SQL todos los discos de un usuario concreto
+        $sql = "select * from usuario";
+
+        $stmt = $conexion->prepare($sql);
+
+        $stmt->execute();
+        $listaUsuarios = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+            $usuario = new Usuario(               
+
+                $id_usuario = $row['id_usuario'],
+                $nombre = $row['nombre'],
+                $apellido = $row['apellido'],
+                $email = $row['email'],
+                $password = $row['password'],
+                $img_perfil = $row['img_perfil'],
+                $rol = $row['rol'],
+
+            );
+
+            array_push($listaUsuarios, $usuario);
+        }
+
+        return $listaUsuarios;
+    }
+
+    static function obtenerUsuarioPorId($id_usuario) {
+        $conexion = new ConectorBD();
+        $conexion = $conexion->conectar();
+
+        $sql = "SELECT * FROM usuario WHERE id_usuario = :id_usuario"; 
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':id_usuario', $id_usuario);
+        $stmt->execute();
+
+            return $stmt->fetch(PDO::FETCH_OBJ); 
+    }
+
+    static function eliminarUsuario($id_usuario){
+        $conexion = new ConectorBD();
+        $conexion = $conexion->conectar();
+
+        // Sentencia SQL para eliminar un usuario
+        $sql = "delete from usuario where id_usuario=:id_usuario";
+
+        $stmt = $conexion->prepare($sql);
+
+        // vincular parámetros     
+        $stmt->bindParam(':id_usuario', $id_usuario);
+
         $stmt->execute();
     }
 }

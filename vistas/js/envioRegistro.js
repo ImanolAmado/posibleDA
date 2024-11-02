@@ -55,7 +55,7 @@ window.onload = function () {
                             text: data,
                             icon: "success",
                         })                    
-                        // Login exitoso
+                        // Registro exitoso
                         window.location.href = "../vistas/home.php";
                 }
 
