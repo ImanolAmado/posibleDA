@@ -20,9 +20,9 @@ document.getElementById("eliminarUsuario").addEventListener("click", function ()
                     text: data,
                     icon: "success",
                 })
-                    .then(() => {
+                  //  .then(() => {
                         window.location.href = "todosLosUsuarios.php";
-                    })
+                 //   })
             }
             if (data.length == 36) {
                 swal({
