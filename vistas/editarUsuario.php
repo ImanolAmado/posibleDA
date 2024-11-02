@@ -5,6 +5,13 @@ if (!isset($_SESSION['email'])) {
     header("Location:login.php");
     exit();
 }
+
+include_once "../modelos/Log.php";
+// Guardamos la pestaña actual y la fecha para nuestro log
+$pestana=basename($_SERVER['PHP_SELF']);
+$fecha= $fecha = date("Y-m-d");
+Log::logConsultaPorPestana($pestana, $fecha);
+
 include_once "../modelos/Usuario.php";
 
 

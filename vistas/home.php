@@ -6,6 +6,13 @@ if(!isset($_SESSION['email'])){
     exit();
 }
 
+include_once "../modelos/Log.php";
+// Guardamos la pestaña actual y la fecha para nuestro log
+$pestana=basename($_SERVER['PHP_SELF']);
+$fecha= $fecha = date("Y-m-d");
+Log::logConsultaPorPestana($pestana, $fecha);
+
+
 include "cabecera.php";
 ?>
 <div class="row justify-content-center">

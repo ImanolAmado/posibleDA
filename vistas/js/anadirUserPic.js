@@ -14,8 +14,9 @@ boton.addEventListener("click", function(){
     //Tenemos en la variable archivo un objeto de tipo imagen que tiene diferentes
     // atributos como nombre, tamaño, tipo...   
     verificarImagen(archivo);
+});
 
-})
+
 
 function verificarImagen(archivo){
 
@@ -76,10 +77,8 @@ function verificarImagen(archivo){
     });
 
 }
-
     
 }
-
 
 // Función que pide al servidor las imágenes de los usuarios
 function llamarPics(){
@@ -107,23 +106,29 @@ div1.setAttribute("style","width: 18rem;");
 tarjeta.appendChild(div1);
 
 let imagen = document.createElement("img");
+imagen.setAttribute("class","rounded mx-auto d-block");
 imagen.setAttribute("src", pics[i].user_pic);
 imagen.setAttribute("alt","Imagen de usuario");
-imagen.setAttribute("class","card-img-top");
+imagen.setAttribute("style","width: 70%");
+
 div1.append(imagen);
 
 let div2 = document.createElement("div");
 div2.setAttribute("class","card-body");
 div1.append(div2);
 
+}
+
+}
+
+
+// Decidimos no implementar la función de
+// borrado de fotos de pefil
+/*
 let a = document.createElement("input");
 a.setAttribute("class","btn btn-secondary");
 a.setAttribute("type","button");
 a.setAttribute("value","eliminar");
-a.setAttribute("id","boton_"+i);
+a.setAttribute("id","boton-"+i);
 div2.appendChild(a);
-}
-
-}
-
-
+*/

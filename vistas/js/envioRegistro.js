@@ -22,16 +22,10 @@ window.onload = function () {
         registro.email = document.getElementById("email").value;
         registro.pass = document.getElementById("pass").value;
         registro.pass2 = document.getElementById("confirm-pass").value;
-        registro.rol = document.getElementById("rol").value;
-        console.log(registro.nombre);
-        console.log(registro.apellido);
-        console.log(registro.email);
-        console.log(registro.pass);
-        console.log(registro.pass);
-        console.log(registro.rol);
+        registro.rol = "usuario"; // Valor por defecto
+        registro.pic = "../resources/img/userPics/pic8.jpg" // valor por defecto
 
         let registroJSON = JSON.stringify(registro);
-
 
         // Llamada AJAX, enviando nuestro Objeto transformado
         // en JSON.        

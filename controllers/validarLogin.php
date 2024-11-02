@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once "../modelos/Usuario.php";
+include_once "../modelos/Log.php";
 
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){   
@@ -36,10 +37,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                     $_SESSION['id_usuario']=$idEncontrado;
                     $_SESSION['rol']=$rolEncontrado;
                     $_SESSION['userPic']=$userPicEncontrado;
-                    $_SESSION['password'] = $passwordEncontrado;
+
+                    // En este punto, el acceso es válido por lo que es buen momento para
+                    // registrar nuestro log de "últimos accesos".
+
+                    $fecha = date("Y-m-d");
+
+                    Log::logUltimosAccesos($_SESSION['id_usuario'], $fecha);
                                         
                     echo json_encode(["success" => true, "message" => "Login válido"]);
-                    exit(); 
+                    exit();
            
                 } else $mensajeError="¡Error! password incorrecto";  
 
