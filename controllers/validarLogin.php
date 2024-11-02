@@ -36,6 +36,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                     $_SESSION['id_usuario']=$idEncontrado;
                     $_SESSION['rol']=$rolEncontrado;
                     $_SESSION['userPic']=$userPicEncontrado;
+                    $_SESSION['password'] = $passwordEncontrado;
                                         
                     echo json_encode(["success" => true, "message" => "Login válido"]);
                     exit(); 

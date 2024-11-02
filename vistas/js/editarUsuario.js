@@ -1,12 +1,8 @@
 window.onload = function () {
 
-    /* 
-        let url = window.location.href;
-        let corte = url.split("=");
-        let id = corte[1];
-     */
-
-    //let idJSON = JSON.stringify(id);
+    let id = document.getElementById("id").value;
+        
+        let idJSON = JSON.stringify(id);
 
     fetch('../controllers/controller_editarUsuario.php', {
         method: 'POST',
@@ -14,7 +10,7 @@ window.onload = function () {
             'Content-Type': 'application/json'
         },
 
-        body: JSON.stringify({})
+        body: idJSON
     })
 
 
@@ -22,13 +18,13 @@ window.onload = function () {
         .then(response => response.json())
         .then(data => {
             pintarDatos(data);
-            console.log(data);
+          //  console.log(data);
         })
 
 
     function pintarDatos(usuario) {
 
-        console.log(usuario);
+        //console.log(usuario);
 
         let nombre = document.getElementById("nombre");
         if (usuario.nombre == null) {
@@ -47,14 +43,17 @@ window.onload = function () {
 
         let password = document.getElementById("pass");
         if (usuario.password == null) {
-            password.value = "";
+            password.value = "123456";
         } else password.value = usuario.password;
 
         let confirmPassword = document.getElementById("confirm-pass");
         if (usuario.password == null) {
-            confirmPassword.value = "";
+            confirmPassword.value = "123456";
         } else confirmPassword.value = usuario.password;
 
+        //Guardo en variables el email y el password original, para compararlo después
+        let originalEmail = usuario.email;
+        let originalPassword = usuario.password;
 
 
         let rol = document.getElementById("rol");
@@ -65,6 +64,7 @@ window.onload = function () {
         let guardar = document.getElementById("guardar");
         guardar.addEventListener('click', actualizarUsuario);
 
+        //console.log(confirmPassword.value);
         function actualizarUsuario(e) {
             if (!validarPassword()) {
                 e.preventDefault();
@@ -72,17 +72,24 @@ window.onload = function () {
             };
 
             let usuarioActualizar = new Object();
+            usuarioActualizar.id = document.getElementById('id').value;
             usuarioActualizar.nombre = nombre.value;
             usuarioActualizar.apellido = apellido.value;
             usuarioActualizar.email = email.value;
+            usuarioActualizar.originalEmail = originalEmail;
+            usuarioActualizar.originalPassword = originalPassword;
             usuarioActualizar.password = password.value;
             usuarioActualizar.rol = rol.value;
 
-            console.log(nombre.value);
-            console.log(apellido.value);
-            console.log(email.value);
-            console.log(password.value);
-            console.log(rol.value);
+            console.log(usuarioActualizar.id = document.getElementById('id').value);
+            console.log(usuarioActualizar.nombre);
+            console.log(usuarioActualizar.apellido);
+            console.log(usuarioActualizar.email);
+            console.log(usuarioActualizar.originalEmail);
+            console.log(usuarioActualizar.password);
+            console.log(usuarioActualizar.originalPassword);
+            console.log(usuarioActualizar.rol);
+
 
             let usuarioActualizarJSON = JSON.stringify(usuarioActualizar);
 
@@ -99,17 +106,20 @@ window.onload = function () {
                 // .then(response => response.json())
                 .then(response => response.json())
                 .then(data => {
+                   console.log(data);
                     if (data.error) {
                         console.error('Error:', data.error);
                     }
 
-                    
                     if(data.length == 26){
                         swal({
                             title: "Éxito",
                             text: data,
                             icon: "success",
                         })
+                        .then(() => { 
+                            window.location.href = "todosLosUsuarios.php";
+                        });
                     } 
 
                     console.log(data.length);
@@ -134,6 +144,7 @@ window.onload = function () {
 
     }
 
+    //Comprobación de los passwords
     function validarPassword() {
         var caract_longitud = 6;
         var pass1 = document.getElementById("pass").value;

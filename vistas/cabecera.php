@@ -28,7 +28,7 @@ $paginaActual = basename($_SERVER['PHP_SELF']);
 <body>
     <div class="row">
         <div class="col-lg-12">
-            <nav class="navbar navbar-expand-sm" style="background-color: #e3f2fd;">
+            <nav class="navbar navbar-expand-md" style="background-color: #e3f2fd;">
                 <span class="navbar-brand mb-0 h1 me-5">POSIBLE DA</span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
                     <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@ $paginaActual = basename($_SERVER['PHP_SELF']);
                         <?php
                         if($_SESSION['rol']=="admin"){?>
                         <li class="nav-item">
-                            <a class="nav-link <?= $paginaActual == 'editarUsuario.php' ? 'active-link' : '' ?>" href="editarUsuario.php">Editar usuario</a>
+                            <a class="nav-link <?= $paginaActual == 'todosLosUsuarios.php' ? 'active-link' : '' ?>" href="todosLosUsuarios.php">Editar usuario</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?= $paginaActual == 'anadirImagen.php' ? 'active-link' : '' ?>" href="anadirImagen.php">Añadir imagen de perfil</a>

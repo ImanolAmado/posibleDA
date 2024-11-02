@@ -9,22 +9,24 @@ if (!isset($_SESSION['email'])) {
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Recibir datos de la solicitud POST
     $actualizarUsuario = json_decode(file_get_contents('php://input'), false);
     $mensaje = "";
-    if (!empty($actualizarUsuario->password)) {
+
+
+    if ($actualizarUsuario->originalPassword == $actualizarUsuario->password){
+        $actualizarUsuario->password = $actualizarUsuario->originalPassword;
+    }else{
         $actualizarUsuario->password = validarPassword($actualizarUsuario->password);
     }
 
-    
-    if ($_SESSION['email'] == $actualizarUsuario->email) {
-        Usuario::actualizarUsuario($actualizarUsuario, $_SESSION['id_usuario']);
+    if ($actualizarUsuario->originalEmail == $actualizarUsuario->email) {
+        Usuario::actualizarUsuario($actualizarUsuario, $actualizarUsuario->id);
         $mensaje = "Actualizado correctamente.";
     } else {
         if (Usuario::existeEmail($actualizarUsuario->email)) {
             $mensaje = "Error email ya existe.";
         } else {
-            Usuario::actualizarUsuario($actualizarUsuario, $_SESSION['id_usuario']);
+            Usuario::actualizarUsuario($actualizarUsuario, $actualizarUsuario->id);
             $mensaje = "Actualizado correctamente.";
         }
     }
