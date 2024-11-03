@@ -40,9 +40,6 @@ $paginaActual = basename($_SERVER['PHP_SELF']);
                             <a class="nav-link  <?= $paginaActual == 'home.php' ? 'active-link' : '' ?>" href="home.php">Colección</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link <?= $paginaActual == 'resenas.php' ? 'active-link' : '' ?>" href="resenas.php">Mis reseñas</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link <?= $paginaActual == 'vista_buscarLibros.php' ? 'active-link' : '' ?>" href="vista_buscarLibros.php">Añadir libro</a>
                         </li>
                     <!-- Si se loguea un ADMIN, menú diferente -->
@@ -55,10 +52,7 @@ $paginaActual = basename($_SERVER['PHP_SELF']);
                             <a class="nav-link <?= $paginaActual == 'anadirImagen.php' ? 'active-link' : '' ?>" href="anadirImagen.php">Añadir imagen de perfil</a>
                         </li>
                         <?php } ?>  
-                        <!-- Fin MENÚ admin -->    <!--                   
-                        <li class="nav-item">
-                            <a class="nav-link" href="../controllers/logout.php">Logout</a>
-                        </li> -->
+                        <!-- Fin MENÚ admin -->
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
