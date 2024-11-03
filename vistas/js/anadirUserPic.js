@@ -69,7 +69,7 @@ function verificarImagen(archivo){
         })
         
         // repintamos pantalla
-        location.reload();
+        llamarPics();
     
     })
     .catch(error => {
@@ -82,6 +82,8 @@ function verificarImagen(archivo){
 
 // Función que pide al servidor las imágenes de los usuarios
 function llamarPics(){
+
+tarjeta.innerHTML = "";
     
 fetch('../controllers/controller_cogerPics.php', {
     method: 'GET',

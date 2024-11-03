@@ -33,7 +33,7 @@ include "cabecera.php";
             <div class="d-flex align-items-center justify-content-center w-100 p-3">           
                 <label for="libro" class="custom-select mx-2">Búsqueda</label>
                 <input type="text" class="custom-select mx-2" id="libro" name="libro" required>
-                <input type="button" id="miBoton" value="¡vamos!" class="btn btn-primary" class="me-5"><br><br>
+                <input type="button" id="miBoton" value="¡Vamos!" class="btn btn-primary" class="me-5"><br><br>
             </div>       
        
         </nav>
