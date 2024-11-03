@@ -20,7 +20,6 @@ include "cabecera.php";
             </div>
         </div>
     <br>
-    <a class="btn btn-primary" href="gestionarUsuarios.php" role="button">Añadir usuario</a>
 
     <!-- Tabla bootstrap -->
     <table class="table">
