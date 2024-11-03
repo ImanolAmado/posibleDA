@@ -48,7 +48,7 @@ class Log {
     $conectorBD = new ConectorBD();
     $conexion = $conectorBD->conectar();
 
-    // Sentencia SQL para insertar un libro nuevo
+    // Sentencia SQL para insertar log
     $sql = "insert into log.log (id_usuario, fecha) values (:id_usuario, :fecha)";
 
     $stmt = $conexion->prepare($sql);
@@ -65,7 +65,7 @@ class Log {
         $conectorBD = new ConectorBD();
         $conexion = $conectorBD->conectar();
     
-        // Sentencia SQL para insertar un libro nuevo
+        // Sentencia SQL para insertar log
         $sql = "insert into log.log (pestana, fecha) values (:pestana, :fecha)";
     
         $stmt = $conexion->prepare($sql);
