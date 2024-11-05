@@ -166,8 +166,7 @@ function llamarLibros(coleccion, estado){
         b.addEventListener("click", function(event){           
             let id = event.target.id.split("_");            
             let libroEliminar = data[id[1]];           
-            eliminarLibro(libroEliminar); 
-           
+            eliminarLibro(libroEliminar);            
         });
         }        
     }

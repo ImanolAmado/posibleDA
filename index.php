@@ -30,7 +30,6 @@ $librosPopulares = Libro::obtenerimagenLibro();
 
         .navbar {
             border-bottom: 2px solid #007bff;
-            /* o cualquier color que elijas */
         }
     </style>
 </head>

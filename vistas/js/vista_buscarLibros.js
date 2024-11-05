@@ -16,7 +16,7 @@ window.onload = function () {
 
     async function loadDoc(cadena) {
 
-        // Realizamos la busqueda de la cadena que hemos preparado en la API
+        // Realizamos la búsqueda de la cadena que hemos preparado en la API
         let url = 'https://www.googleapis.com/books/v1/volumes?q=';
         url = url.concat(cadena);
 
@@ -31,7 +31,6 @@ window.onload = function () {
         } catch (error) {
             console.error(error);
         }
-
     }
 
     // función para pintar en pantalla los libros encontrados
@@ -173,8 +172,7 @@ window.onload = function () {
         // Cogemos el Id del evento y accedemos al objeto 
         // que nos interese por su índice
         let id = event.target.id.split("_");        
-        let libroJSON = JSON.stringify(listaLibros[id[1]]);
-       
+        let libroJSON = JSON.stringify(listaLibros[id[1]]);       
         
         // Llamada AJAX, enviando nuestro Objeto transformado
         // en JSON.        

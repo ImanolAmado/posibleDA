@@ -166,11 +166,12 @@ class Usuario
         $nombre = $usuarioNuevo->nombre;
         $apellido = $usuarioNuevo->apellido;
         $email = $usuarioNuevo->email;
-        $password = password_hash($usuarioNuevo->pass, PASSWORD_DEFAULT); //Hashear el password
+        $password = password_hash($usuarioNuevo->pass, PASSWORD_DEFAULT); 
         $rol = $usuarioNuevo->rol;
         $pic = $usuarioNuevo->pic;
 
-        $sql = "insert into usuario (nombre, apellido, email, password, img_perfil, rol) values(:nombre, :apellido, :email, :password, :pic, :rol)";
+        $sql = "insert into usuario (nombre, apellido, email, password, img_perfil, rol) 
+        values(:nombre, :apellido, :email, :password, :pic, :rol)";
         $stmt = $conexion->prepare($sql);
         $stmt->bindParam(':nombre', $nombre);
         $stmt->bindParam(':apellido', $apellido);

@@ -11,13 +11,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
     if (isset($input['email']) || isset($input['pass'])) {
       
-        if(emailValido($input['email'])){        
-            $emailIntroducido =  $input['email'];          
-       
-            $passIntroducido = $input['pass'];      
-        
-            // para hashear contraseñas:
-            // https://onlinephp.io/password-hash    
+        if(emailValido($input['email'])){   
+
+            $emailIntroducido =  $input['email'];           
+            $passIntroducido = $input['pass'];               
 
             $resultado = Usuario::loginUsuario($emailIntroducido);
 
