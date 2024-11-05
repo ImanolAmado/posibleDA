@@ -21,7 +21,7 @@ $paginaActual = basename($_SERVER['PHP_SELF']);
             margin-right: 40px !important;
         }
         .active-link {
-            background-color: #b0ddfd !important; /* Cambia el color a tu preferencia */
+            background-color: #b0ddfd !important; 
         }
     </style>
 </head>
