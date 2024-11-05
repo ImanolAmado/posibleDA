@@ -47,7 +47,7 @@ include "cabecera.php";
             <option value="abandonado">Abandonados</option>
             <option value="todos" selected>Todos</option>
             </select>
-            <button type="button" id="aplicarFiltro" class="btn btn-primary" class="me-5">filtrar</button>           
+            <button type="button" id="aplicarFiltro" class="btn btn-primary" class="me-5">Filtrar</button>           
         </div>         
         </nav>
     </div>

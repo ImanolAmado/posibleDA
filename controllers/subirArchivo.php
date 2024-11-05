@@ -30,10 +30,14 @@ if(!isset($_SESSION['email'])){
                 // Si el archivo es jpg...                
                 if(in_array($tipo, $tiposPermitidos)){
 
-                    $timestamp = time();
+                    // Para construir el nombre del archivo, necesitamos
+                    // llamar a la base de datos. El nombre será "pic + numero de foto"
+
+                    $numeroFoto = Usuario::cogerPics(); 
+                    $numero = count($numeroFoto) + 1;
                     
                     // Concatenamos ruta y nombre
-                    $destino="../resources/img/userPics/pic".$timestamp.".jpg";
+                    $destino="../resources/img/userPics/pic".$numero.".jpg";
 
                     // Subimos archivo
                     if(move_uploaded_file($rutaTemporal, $destino)){

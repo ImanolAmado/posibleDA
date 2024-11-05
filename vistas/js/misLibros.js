@@ -145,14 +145,14 @@ function llamarLibros(coleccion, estado){
         let a = document.createElement("input");
         a.setAttribute("class","btn btn-primary me-2");
         a.setAttribute("type","button");
-        a.setAttribute("value","editar");
+        a.setAttribute("value","Editar");
         a.setAttribute("id","edita_"+i);
         div5.appendChild(a);
 
         let b = document.createElement("input");
         b.setAttribute("class","btn btn-secondary");
         b.setAttribute("type","button");
-        b.setAttribute("value","eliminar");
+        b.setAttribute("value","Eliminar");
         b.setAttribute("id","elimina_"+i);
         div5.appendChild(b);
                         

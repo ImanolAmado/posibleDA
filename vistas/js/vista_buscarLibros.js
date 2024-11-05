@@ -156,7 +156,7 @@ window.onload = function () {
             let a = document.createElement("input");
             a.setAttribute("class","btn btn-primary");
             a.setAttribute("type","button");
-            a.setAttribute("value","añadir");
+            a.setAttribute("value","Añadir");
             a.setAttribute("id","boton_"+i);
             div5.appendChild(a);
 
