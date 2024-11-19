@@ -79,17 +79,7 @@ window.onload = function () {
             usuarioActualizar.originalEmail = originalEmail;
             usuarioActualizar.originalPassword = originalPassword;
             usuarioActualizar.password = password.value;
-            usuarioActualizar.rol = rol.value;
-
-            console.log(usuarioActualizar.id = document.getElementById('id').value);
-            console.log(usuarioActualizar.nombre);
-            console.log(usuarioActualizar.apellido);
-            console.log(usuarioActualizar.email);
-            console.log(usuarioActualizar.originalEmail);
-            console.log(usuarioActualizar.password);
-            console.log(usuarioActualizar.originalPassword);
-            console.log(usuarioActualizar.rol);
-
+            usuarioActualizar.rol = rol.value;         
 
             let usuarioActualizarJSON = JSON.stringify(usuarioActualizar);
 
@@ -106,7 +96,7 @@ window.onload = function () {
                 // .then(response => response.json())
                 .then(response => response.json())
                 .then(data => {
-                   console.log(data);
+                  
                     if (data.error) {
                         console.error('Error:', data.error);
                     }
@@ -121,8 +111,7 @@ window.onload = function () {
                             window.location.href = "todosLosUsuarios.php";
                         });
                     } 
-
-                    console.log(data.length);
+                   
                     if(data.length == 22){
                         swal({
                             title: "¡Error!",

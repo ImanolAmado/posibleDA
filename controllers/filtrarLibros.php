@@ -20,11 +20,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $misLibros = Libro::obtenerMisLibrosFiltrados($coleccion, $estado, $id_usuario);
 
-    if($misLibros==null){
-    // Responder 
-    echo json_encode("No se han encontrado libros");
-    }
-    else echo json_encode($misLibros);
+    // Si "misLibros"== null y hemos aplicado los dos filtros a "todos", significa que
+    // el usuario no tiene ningún libro.
+    //if($misLibros==null && $coleccion=='todos' && $estado=='todos'){
+    // echo json_encode("Usuario sin libros");
+    
+        if($misLibros==null){
+            if($coleccion=="todos" && $estado=="todos"){
+                echo json_encode("Usuario sin libros");
+            } else echo json_encode("No se han encontrado libros");
+        }
+        else echo json_encode($misLibros);
+            
     
 }
 

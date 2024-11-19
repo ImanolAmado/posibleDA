@@ -46,7 +46,19 @@ function llamarLibros(coleccion, estado){
         if (data.error) {
         console.error('Error:', data.error);
        
-    } else {  
+    } else {
+        
+        // Si del servidor recibimos un mensaje de 19 caracteres, no hay 
+        // ningún libro en la colección del usuario.
+     
+        if (data.length==18){
+            swal({
+                title: "¡Bienvenido!",
+                text: "Añade libros a tu colección y empieza a divertirte",
+                icon: "success",       
+            }) 
+        } else {
+
         // Sabemos que no se han encontrado libros con los filtros aplicados
         // si recibimos del servidor un mensaje de 27 caracteres.
        
@@ -59,6 +71,8 @@ function llamarLibros(coleccion, estado){
         } else pintarLibros(data);
 
         }
+
+    }
            
     })  
 

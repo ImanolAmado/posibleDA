@@ -5,6 +5,12 @@ if (!isset($_SESSION['email'])) {
     header("Location:login.php");
     exit();
 }
+
+if ($_SESSION['rol'] !="admin"){
+    header("Location:home.php");
+    exit();
+}
+
 include_once "../modelos/Usuario.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {

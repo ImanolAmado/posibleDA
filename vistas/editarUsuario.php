@@ -6,6 +6,11 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
+if ($_SESSION['rol'] !="admin"){
+    header("Location:home.php");
+    exit();
+}
+
 include_once "../modelos/Log.php";
 // Guardamos la pestaña actual y la fecha para nuestro log
 $pestana=basename($_SERVER['PHP_SELF']);

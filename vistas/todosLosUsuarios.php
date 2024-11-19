@@ -8,6 +8,15 @@ if (!isset($_SESSION['email'])) {
     header("Location:login.php");
     exit();
 }
+
+if ($_SESSION['rol'] !="admin"){
+    header("Location:home.php");
+    exit();
+}
+
+
+
+
 include "cabecera.php";
 
 ?>
@@ -31,7 +40,6 @@ include "cabecera.php";
                 <th scope="col" style="width:15%">Nombre</th>
                 <th scope="col" style="width:15%">Apellido</th>
                 <th scope="col" style="width:15%">Email</th>
-                <th scope="col" style="width:15%">Password</th>
                 <th scope="col" style="width:3%">Acciones</th>
                 <th scope="col" style="width:3%"></th>
             </tr>
@@ -49,8 +57,7 @@ include "cabecera.php";
                     <td><?php echo $usuario->getRol(); ?></td>
                     <td><?php echo $usuario->getNombre(); ?></td>
                     <td><?php echo $usuario->getApellido(); ?></td>
-                    <td><?php echo $usuario->getEmail(); ?></td>
-                    <td><?php echo "*************"; ?></td>
+                    <td><?php echo $usuario->getEmail(); ?></td>                    
                     <td>
                         <form id="f1" method="post" action="procesarBorrarUsuario.php">
                             <input type="hidden" id="id" name="id" value="<?php echo $usuario->getId_usuario(); ?>">

@@ -11,18 +11,13 @@ document.getElementById("eliminarUsuario").addEventListener("click", function ()
     })
         .then(response => response.json())
         .then(data => {
-            // console.log(data.length);
+        
             if (data.error) {
                 console.error('Error:', data.error);
             }
-            if (data.length == 31) {
-                // console.log(data);
-                /* swal({
-                    title: "Éxito",
-                    text: data,
-                    icon: "success",
-                }) */
-                    window.location.href = "todosLosUsuarios.php";
+            if (data.length == 31) {      
+                         
+                window.location.href = "todosLosUsuarios.php";
             }
             if (data.length == 36) {
                 swal({
